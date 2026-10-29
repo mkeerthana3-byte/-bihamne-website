@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f0e7">
+  <meta name="description" content="BIHAMNE — Where space, design and imagination converge.">
+  <title>BIHAMNE — Space, Design & Imagination</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500&display=swap');
+    :root {
+      --ivory: #f4f0e7;
+      --sand: #e6ddcd;
+      --stone: #77776a;
+      --olive: #626b4f;
+      --terracotta: #b86d50;
+      --ink: #292b25;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background: var(--ivory);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 26px 7%;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 5;
+    }
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 0.78rem;
+    }
+    .nav-links a:hover {
+      color: var(--terracotta);
+    }
+    .hero {
+      min-height: 100vh;
+      min-height: 100svh;
+      padding: 120px 7% 55px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 42%, #e8deca 0%, transparent 48%),
+        var(--ivory);
+    }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.68rem;
+      color: var(--olive);
+    }
+    .sculpture-stage {
+      height: 43vh;
+      min-height: 270px;
+      max-height: 440px;
+      display: grid;
+      place-items: center;
+      perspective: 900px;
+      position: relative;
+    }
+    .sculpture {
+      width: min(65vw, 340px);
+      aspect-ratio: 1;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: float 7s ease-in-out infinite;
+    }
+    .form {
+      position: absolute;
+      inset: 12%;
+      border-radius: 48% 52% 38% 62% / 40% 42% 58% 60%;
+      background: linear-gradient(140deg, #f8f3e9, #c4b49a 55%, #8c8b75);
+      box-shadow:
+        inset -22px -18px 40px #77715d55,
+        inset 12px 12px 28px #ffffffaa,
+        24px 34px 55px #77715d30;
+      transform: rotate(-22deg) rotateY(-20deg);
+    }
+    .form::before {
+      content: "";
+      position: absolute;
+      width: 65%;
+      height: 65%;
+      top: 17%;
+      left: 17%;
+      border: 15px solid #f4f0e7;
+      border-right-color: #a5a087;
+      border-bottom-color: #b8a98e;
+      border-radius: 50%;
+      transform: rotate(28deg);
+      box-shadow: 8px 12px 25px #716b5930;
+    }
+    .form::after {
+      content: "";
+      position: absolute;
+      width: 32%;
+      height: 125%;
+      left: 35%;
+      top: -12%;
+      background: linear-gradient(90deg, #a89b81, #f4ead8, #b2a387);
+      border-radius: 48%;
+      transform: rotate(42deg);
+      opacity: 0.85;
+      mix-blend-mode: multiply;
+    }
+    .orbit {
+      position: absolute;
+      inset: 4%;
+      border: 1px solid #77776a65;
+      border-radius: 50%;
+      transform: rotateX(68deg) rotate(-25deg);
+    }
+    .orbit-two {
+      inset: 15% -5%;
+      transform: rotateX(68deg) rotate(35deg);
+      border-color: #b86d5060;
+    }
+    .hero-copy {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-copy h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 7vw, 5.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.045em;
+      margin: 18px auto;
+      max-width: 850px;
+    }
+    .hero-copy h1 span {
+      color: var(--olive);
+      font-style: italic;
+    }
+    .hero-copy p {
+      color: var(--stone);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    .hero-actions {
+      margin-top: 27px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .button {
+      display: inline-block;
+      padding: 13px 22px;
+      border: 1px solid var(--ink);
+      border-radius: 2px;
+      font-size: 0.75rem;
+      transition: 0.3s ease;
+    }
+    .button-primary {
+      background: var(--ink);
+      color: var(--ivory);
+    }
+    .button:hover {
+      background: var(--terracotta);
+      color: white;
+      border-color: var(--terracotta);
+      transform: translateY(-2px);
+    }
+    .hero-bottom {
+      position: absolute;
+      bottom: 24px;
+      left: 7%;
+      right: 7%;
+      display: flex;
+      justify-content: space-between;
+      color: var(--stone);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .section {
+      padding: 100px 8%;
+    }
+    .section-label {
+      color: var(--olive);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 22px;
+    }
+    .intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(2.1rem, 5vw, 4.2rem);
+      line-height: 1.2;
+      max-width: 850px;
+    }
+    .intro h2 span {
+      color: var(--olive);
+      font-style: italic;
+    }
+    .intro p {
+      color: var(--stone);
+      max-width: 510px;
+      line-height: 1.9;
+      margin-top: 24px;
+    }
+    .disciplines {
+      background: var(--sand);
+    }
+    .discipline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 45px;
+      border-top: 1px solid #77776a55;
+    }
+    .discipline {
+      padding: 25px 12px 25px 0;
+      border-bottom: 1px solid #77776a55;
+    }
+    .discipline span {
+      display: block;
+      color: var(--terracotta);
+      font-size: 0.7rem;
+      margin-bottom: 12px;
+    }
+    .discipline h3 {
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .work {
+      background: var(--ivory);
+    }
+    .work-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .work-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+    }
+    .work-note {
+      color: var(--stone);
+      font-size: 0.8rem;
+      max-width: 250px;
+      line-height: 1.7;
+    }
+    .project-placeholder {
+      margin-top: 40px;
+      min-height: 260px;
+      background: linear-gradient(135deg, #d7cbb5, #a4a58c);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 35px;
+    }
+    .project-placeholder p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      max-width: 420px;
+    }
+    .project-placeholder small {
+      display: block;
+      margin-top: 15px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      color: #414438;
+    }
+    .contact {
+      background: var(--olive);
+      color: var(--ivory);
+      text-align: center;
+    }
+    .contact .section-label {
+      color: #e2c3a7;
+    }
+    .contact h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      max-width: 750px;
+      margin: 0 auto 25px;
+    }
+    .contact p {
+      color: #e3e0d5;
+      line-height: 1.8;
+    }
+    .contact .button {
+      margin-top: 28px;
+      border-color: var(--ivory);
+    }
+    .contact .button:hover {
+      border-color: var(--terracotta);
+    }
+    footer {
+      background: var(--ink);
+      color: var(--ivory);
+      padding: 27px 7%;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+    }
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotateY(-5deg);
+      }
+      50% {
+        transform: translateY(-12px) rotateY(5deg);
+      }
+    }
+    @media (max-width: 650px) {
+      .navigation {
+        padding: 22px 6%;
+      }
+      .nav-links {
+        gap: 13px;
+        font-size: 0.68rem;
+      }
+      .logo {
+        font-size: 1.1rem;
+      }
+      .hero {
+        padding-left: 6%;
+        padding-right: 6%;
+      }
+      .sculpture-stage {
+        height: 35vh;
+      }
+      .sculpture {
+        width: min(75vw, 300px);
+      }
+      .hero-bottom {
+        font-size: 0.55rem;
+      }
+      .section {
+        padding: 75px 7%;
+      }
+      .discipline-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navigation">
+    <a class="logo" href="#home">BIHAMNE</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#work">Work</a>
+      <a href="#studio">Studio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <div class="sculpture-stage" aria-label="Abstract architectural sculpture">
+        <div class="sculpture" aria-hidden="true">
+          <div class="orbit"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="form"></div>
+        </div>
+      </div>
+  <div class="hero-copy">
+    <div class="eyebrow">Architecture · Design · Digital Art</div>
+    <h1>Where space, design and <span>imagination</span> converge.</h1>
+    <p>
+      We explore the meeting point of architecture, visual culture
+      and digital experiences.
+    </p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="#work">Explore our work ↗</a>
+      <a class="button" href="#contact">Start a conversation</a>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <span>Independent Creative Studio</span>
+    <span>Scroll to explore ↓</span>
+  </div>
+</section>
+<section class="section intro" id="studio">
+  <div class="section-label">01 — Our perspective</div>
+  <h2>Designing beyond the boundaries of <span>space.</span></h2>
+  <p>
+    BIHAMNE is a multidisciplinary creative studio bringing together
+    architecture, graphic design, digital interfaces, motion and
+    three-dimensional experiences. We believe every medium offers
+    another way to shape how people see and experience the world.
+  </p>
+</section>
+<section class="section disciplines">
+  <div class="section-label">02 — What we explore</div>
+  <h2 style="font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(2.2rem,5vw,3.5rem);">
+    Different disciplines.<br>One creative vision.
+  </h2>
+  <div class="discipline-grid">
+    <div class="discipline"><span>01</span><h3>Architecture & Spatial Design</h3></div>
+    <div class="discipline"><span>02</span><h3>UI/UX & Digital Experiences</h3></div>
+    <div class="discipline"><span>03</span><h3>Graphic Design & Identity</h3></div>
+    <div class="discipline"><span>04</span><h3>Motion Graphics & Animation</h3></div>
+    <div class="discipline"><span>05</span><h3>3D & Interactive Experiences</h3></div>
+    <div class="discipline"><span>06</span><h3>Illustration & Visual Stories</h3></div>
+  </div>
+</section>
+<section class="section work" id="work">
+  <div class="work-header">
+    <div>
+      <div class="section-label">03 — Selected work</div>
+      <h2>Ideas into form.</h2>
+    </div>
+    <p class="work-note">
+      A growing collection of spaces, images and digital experiments.
+    </p>
+  </div>
+  <div class="project-placeholder">
+    <div>
+      <p>Your next story begins here.</p>
+      <small>PROJECT SHOWCASE · COMING SOON</small>
+    </div>
+  </div>
+</section>
+<section class="section contact" id="contact">
+  <div class="section-label">04 — Begin something</div>
+  <h2>Have an idea worth exploring?</h2>
+  <p>Let's create something meaningful together.</p>
+  <a class="button" href="mailto:hello@bihamne.com">Start a conversation ↗</a>
+</section>
+  </main>
+  <footer>
+    <span>BIHAMNE © 2026</span>
+    <span>Where space, design and imagination converge.</span>
+  </footer>
+</body>
+</html>
