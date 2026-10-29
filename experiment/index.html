@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e9e1d2">
+<title>BIHAMNE — The Building That Builds Itself</title>
+<meta name="description" content="BIHAMNE — Where space, design and imagination converge. Architecture, visual design and interactive experiences.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap');
+:root {
+  --paper: #e9e1d2;
+  --ink: #272821;
+  --stone: #c8bba5;
+  --clay: #b95e43;
+  --olive: #767963;
+}
+* { box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+  background: var(--paper);
+}
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+}
+a { color: inherit; text-decoration: none; }
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 6%;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.logo {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: .2em;
+}
+.navlinks { display: flex; gap: 28px; }
+.hero {
+  min-height: 100svh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 145px 7% 8%;
+  background:
+    radial-gradient(ellipse at 65% 35%, #f8f0e2 0%, transparent 40%),
+    linear-gradient(135deg, #e9e1d2, #d6c9b4);
+}
+#scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(0deg, rgba(233,225,210,.88), transparent 48%);
+  z-index: 1;
+}
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+  pointer-events: none;
+}
+.eyebrow {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  margin-bottom: 22px;
+}
+h1, h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+}
+h1 {
+  font-size: clamp(48px, 8vw, 105px);
+  line-height: .99;
+  letter-spacing: -.055em;
+  margin: 0 0 24px;
+}
+.hero-copy p {
+  max-width: 340px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.scroll-note {
+  position: absolute;
+  right: 6%;
+  bottom: 8%;
+  z-index: 3;
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+.section {
+  padding: 120px 8%;
+}
+.intro {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 9%;
+  align-items: start;
+}
+.label {
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.intro h2 {
+  font-size: clamp(34px, 5vw, 66px);
+  line-height: 1.12;
+  margin: 0;
+}
+.intro p {
+  font-size: 14px;
+  line-height: 1.95;
+  max-width: 500px;
+  color: #5f5b50;
+}
+.chapters {
+  padding: 0 8% 100px;
+}
+.chapter {
+  min-height: 220px;
+  display: grid;
+  grid-template-columns: 70px 1fr 1fr;
+  gap: 25px;
+  align-items: center;
+  border-top: 1px solid rgba(39,40,33,.22);
+  padding: 35px 0;
+}
+.chapter-no {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 30px;
+  color: var(--clay);
+}
+.chapter h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(25px, 3vw, 42px);
+  margin: 0;
+}
+.chapter p {
+  color: #625e53;
+  font-size: 13px;
+  line-height: 1.9;
+  max-width: 360px;
+}
+.disciplines {
+  background: #34362e;
+  color: var(--paper);
+}
+.disciplines h2 {
+  font-size: clamp(40px, 7vw, 82px);
+  max-width: 800px;
+  line-height: 1.1;
+  margin: 35px 0 70px;
+}
+.discipline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #67685e;
+}
+.discipline {
+  padding: 28px 12px 28px 0;
+  border-bottom: 1px solid #67685e;
+  font-size: 14px;
+}
+.discipline span {
+  display: block;
+  color: #bcb7a7;
+  font-size: 10px;
+  margin-top: 10px;
+}
+.contact {
+  padding: 130px 8%;
+  background: var(--clay);
+  color: #f5eddf;
+}
+.contact h2 {
+  font-size: clamp(45px, 9vw, 110px);
+  line-height: 1;
+  letter-spacing: -.045em;
+  margin: 30px 0;
+}
+.contact p {
+  font-size: 13px;
+  line-height: 1.9;
+}
+.contact-link {
+  display: inline-block;
+  margin-top: 22px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,.7);
+  font-size: 12px;
+}
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 25px 8%;
+  background: #34362e;
+  color: #e9e1d2;
+  font-size: 10px;
+  letter-spacing: .1em;
+}
+@media (max-width: 650px) {
+  nav { padding: 22px 6%; }
+  .navlinks { gap: 13px; font-size: 9px; }
+  .logo { font-size: 18px; }
+  .hero { padding: 130px 7% 100px; }
+  .scroll-note { right: 5%; bottom: 5%; }
+  .section { padding: 80px 7%; }
+  .intro { grid-template-columns: 1fr; gap: 30px; }
+  .chapters { padding: 0 7% 70px; }
+  .chapter { grid-template-columns: 38px 1fr; gap: 12px; }
+  .chapter p { grid-column: 2; margin-top: 0; }
+  .discipline-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact { padding: 90px 7%; }
+  footer { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="#home">BIHAMNE</a>
+  <div class="navlinks">
+    <a href="#work">Work</a>
+    <a href="#studio">Studio</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+<header class="hero" id="home">
+  <canvas id="scene" aria-label="An interactive three-dimensional architectural sculpture with a terracotta ribbon"></canvas>
+  <div class="hero-copy">
+    <div class="eyebrow">Architecture · Design · Digital worlds</div>
+    <h1>Where space,<br>design &amp;<br>imagination<br>converge.</h1>
+    <p>A multidisciplinary creative studio shaping spaces, images and experiences between the physical and the imagined.</p>
+  </div>
+  <div class="scroll-note">Scroll to discover ↓</div>
+</header>
+<section class="section intro" id="studio">
+  <div>
+    <div class="label">01 / The idea</div>
+  </div>
+  <div>
+    <h2>The building<br>that builds itself.</h2>
+    <p>What begins as a silent mass becomes something alive. Geometry opens, surfaces unfold, and a single terracotta line finds its way through stone. One evolving sculpture. Four chapters. An exploration of space as a living idea.</p>
+  </div>
+</section>
+<section class="chapters" id="work">
+  <article class="chapter">
+    <div class="chapter-no">01</div>
+    <h3>The mass</h3>
+    <p>A monumental form emerges from stone, light and shadow. Architecture reduced to its essential gestures.</p>
+  </article>
+  <article class="chapter">
+    <div class="chapter-no">02</div>
+    <h3>The unfolding</h3>
+    <p>Rigid geometry begins to breathe. The structure reveals new relationships between void, weight and movement.</p>
+  </article>
+  <article class="chapter">
+    <div class="chapter-no">03</div>
+    <h3>The interruption</h3>
+    <p>A terracotta ribbon enters the composition, tracing an unexpected path through the monumental form.</p>
+  </article>
+  <article class="chapter">
+    <div class="chapter-no">04</div>
+    <h3>The universe</h3>
+    <p>Architecture becomes an interactive landscape — a meeting point for imagination, experimentation and digital craft.</p>
+  </article>
+</section>
+<section class="section disciplines">
+  <div class="label">02 / What we explore</div>
+  <h2>Different disciplines.<br>One creative universe.</h2>
+  <div class="discipline-grid">
+    <div class="discipline">Architecture <span>Space &amp; form</span></div>
+    <div class="discipline">Interior design <span>Material &amp; atmosphere</span></div>
+    <div class="discipline">UI / UX <span>Digital experiences</span></div>
+    <div class="discipline">Graphic design <span>Visual identities</span></div>
+    <div class="discipline">Motion &amp; animation <span>Time &amp; movement</span></div>
+    <div class="discipline">3D &amp; illustration <span>World-building</span></div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  <div class="label">03 / Begin a conversation</div>
+  <h2>Have an idea?<br>Let's give it form.</h2>
+  <p>Architecture, identity, digital experiences or something that doesn't have a name yet.</p>
+  <a class="contact-link" href="mailto:hello@bihamne.com">Start a conversation ↗</a>
+</section>
+<footer>
+  <span>BIHAMNE © 2026</span>
+  <span>Where space, design and imagination converge.</span>
+</footer>
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js';
+const canvas = document.querySelector('#scene');
+const hero = document.querySelector('.hero');
+try {
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color('#e9e1d2');
+  scene.fog = new THREE.Fog('#e9e1d2', 13, 28);
+  const camera = new THREE.PerspectiveCamera(
+    35,
+    hero.clientWidth / hero.clientHeight,
+    0.1,
+    100
+  );
+  camera.position.set(7, 5.2, 10);
+  camera.lookAt(0, 1.5, 0);
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: true,
+    alpha: true,
+    powerPreference: 'low-power'
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+  renderer.setSize(hero.clientWidth, hero.clientHeight);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.15;
+  const sculpture = new THREE.Group();
+  scene.add(sculpture);
+  const stone = new THREE.MeshStandardMaterial({
+    color: '#c9bba4',
+    roughness: 0.82,
+    metalness: 0.02
+  });
+  const lightStone = new THREE.MeshStandardMaterial({
+    color: '#e1d4be',
+    roughness: 0.78
+  });
+  const darkStone = new THREE.MeshStandardMaterial({
+    color: '#a89a83',
+    roughness: 0.9
+  });
+  const clay = new THREE.MeshStandardMaterial({
+    color: '#b95e43',
+    roughness: 0.38,
+    metalness: 0.08
+  });
+  function box(w, h, d, x, y, z, material, rotation = 0) {
+    const mesh = new THREE.Mesh(
+      new THREE.BoxGeometry(w, h, d),
+      material
+    );
+    mesh.position.set(x, y, z);
+    mesh.rotation.y = rotation;
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
+    sculpture.add(mesh);
+    return mesh;
+  }
+  // Monumental architectural base and plinth.
+  box(5.7, 0.22, 4.0, 0, 0.12, 0, darkStone);
+  box(4.9, 0.22, 3.35, 0, 0.32, 0, lightStone);
+  // Main monumental mass.
+  box(1.0, 3.5, 1.05, -1.45, 2.05, -0.25, stone);
+  box(1.7, 0.32, 2.0, -0.75, 3.75, -0.2, lightStone);
+  box(1.8, 0.42, 1.5, 0.5, 3.48, -0.45, stone);
+  // Cantilevered slab.
+  box(2.9, 0.24, 1.7, 0.25, 4.0, -0.2, lightStone, -0.04);
+  box(1.1, 2.0, 0.75, 1.0, 2.0, -0.45, stone);
+  // A freestanding architectural column.
+  const column = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.32, 0.39, 3.1, 12),
+    lightStone
+  );
+  column.position.set(1.65, 1.85, 0.6);
+  column.castShadow = true;
+  sculpture.add(column);
+  // Sculptural arch: two vertical piers and a curved top.
+  box(0.28, 2.0, 0.3, -0.1, 1.42, 1.25, lightStone);
+  box(0.28, 2.0, 0.3, 1.65, 1.42, 1.25, lightStone);
+  const archCurve = new THREE.CatmullRomCurve3([
+    new THREE.Vector3(-0.1, 2.42, 1.25),
+    new THREE.Vector3(0.0, 2.95, 1.25),
+    new THREE.Vector3(0.65, 3.25, 1.25),
+    new THREE.Vector3(1.35, 3.0, 1.25),
+    new THREE.Vector3(1.65, 2.42, 1.25)
+  ]);
+  const arch = new THREE.Mesh(
+    new THREE.TubeGeometry(archCurve, 40, 0.15, 10, false),
+    lightStone
+  );
+  arch.castShadow = true;
+  sculpture.add(arch);
+  // One continuous terracotta ribbon spiralling around the sculpture.
+  const ribbonPoints = [];
+  for (let i = 0; i <= 240; i++) {
+    const t = i / 240;
+    const angle = t * Math.PI * 3.8;
+    const radius = 1.55 - t * 0.12;
+    ribbonPoints.push(new THREE.Vector3(
+      Math.cos(angle) * radius,
+      0.75 + t * 3.0 + Math.sin(angle * 0.65) * 0.12,
+      Math.sin(angle) * radius
+    ));
+  }
+  const ribbonCurve = new THREE.CatmullRomCurve3(ribbonPoints);
+  const ribbon = new THREE.Mesh(
+    new THREE.TubeGeometry(ribbonCurve, 260, 0.105, 10, false),
+    clay
+  );
+  ribbon.castShadow = true;
+  sculpture.add(ribbon);
+  // A quiet floor and a softly illuminated plinth.
+  const floorMaterial = new THREE.MeshStandardMaterial({
+    color: '#e9e1d2',
+    roughness: 0.95
+  });
+  const floor = new THREE.Mesh(
+    new THREE.PlaneGeometry(200, 200),
+    floorMaterial
+  );
+  floor.rotation.x = -Math.PI / 2;
+  floor.position.y = -0.02;
+  floor.receiveShadow = true;
+  scene.add(floor);
+  // Warm late-afternoon lighting.
+  scene.add(new THREE.HemisphereLight('#fff2da', '#847762', 2.0));
+  const sunlight = new THREE.DirectionalLight('#ffe0ad', 4.0);
+  sunlight.position.set(-4, 9, 6);
+  sunlight.castShadow = true;
+  sunlight.shadow.mapSize.set(1024, 1024);
+  sunlight.shadow.camera.left = -8;
+  sunlight.shadow.camera.right = 8;
+  sunlight.shadow.camera.top = 8;
+  sunlight.shadow.camera.bottom = -8;
+  scene.add(sunlight);
+  const fill = new THREE.PointLight('#d9a18b', 18, 15);
+  fill.position.set(2, 3, 3);
+  scene.add(fill);
+  // A subtle halo behind the sculpture.
+  const haloMaterial = new THREE.MeshBasicMaterial({
+    color: '#f7ead5',
+    transparent: true,
+    opacity: 0.48,
+    side: THREE.DoubleSide,
+    depthWrite: false
+  });
+  const halo = new THREE.Mesh(
+    new THREE.CircleGeometry(3.1, 64),
+    haloMaterial
+  );
+  halo.position.set(0, 2.5, -2.4);
+  scene.add(halo);
+  let pointerX = 0;
+  let pointerY = 0;
+  let targetX = 0;
+  let targetY = 0;
+  let scrollProgress = 0;
+  window.addEventListener('pointermove', event => {
+    targetX = (event.clientX / window.innerWidth - 0.5) * 0.45;
+    targetY = (event.clientY / window.innerHeight - 0.5) * 0.18;
+  }, { passive: true });
+  window.addEventListener('scroll', () => {
+    const maxScroll = Math.max(
+      1,
+      document.documentElement.scrollHeight - window.innerHeight
+    );
+    scrollProgress = window.scrollY / maxScroll;
+  }, { passive: true });
+  function resize() {
+    const w = hero.clientWidth;
+    const h = hero.clientHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+  }
+  window.addEventListener('resize', resize);
+  const reducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+  function animate(time) {
+    requestAnimationFrame(animate);
+    const seconds = time * 0.001;
+    pointerX += (targetX - pointerX) * 0.035;
+    pointerY += (targetY - pointerY) * 0.035;
+    if (!reducedMotion) {
+      sculpture.rotation.y = Math.sin(seconds * 0.18) * 0.12 + pointerX;
+      sculpture.position.y = Math.sin(seconds * 0.65) * 0.045;
+      sculpture.rotation.x = pointerY * 0.25;
+      ribbon.rotation.y = Math.sin(seconds * 0.22) * 0.045;
+      halo.material.opacity = 0.40 + Math.sin(seconds * 0.5) * 0.05;
+    }
+    // The camera gradually shifts as the visitor scrolls.
+    const narrow = window.innerWidth < 700;
+    const baseX = narrow ? 5.9 : 7;
+    const baseY = narrow ? 5.5 : 5.2;
+    const baseZ = narrow ? 12.5 : 10;
+    camera.position.x += (
+      baseX + scrollProgress * 1.3 + pointerX * 1.8 - camera.position.x
+    ) * 0.025;
+    camera.position.y += (
+      baseY + scrollProgress * 1.0 + pointerY - camera.position.y
+    ) * 0.025;
+    camera.position.z += (
+      baseZ - scrollProgress * 1.0 - camera.position.z
+    ) * 0.025;
+    camera.lookAt(0, 1.7 + scrollProgress * 0.5, 0);
+    renderer.render(scene, camera);
+  }
+  requestAnimationFrame(animate);
+} catch (error) {
+  console.error('BIHAMNE 3D scene could not start:', error);
+  canvas.style.display = 'none';
+}
+</script>
+</body>
+</html>
